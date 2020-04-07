@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GIFDownloader", "TenorDownloader\GIFDownloader.csproj", "{1859B9F8-6EA6-4054-AEBA-83AE565B6D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GIFDownloader", "GIFDownloader\GIFDownloader.csproj", "{1859B9F8-6EA6-4054-AEBA-83AE565B6D0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
