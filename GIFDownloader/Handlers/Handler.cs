@@ -37,8 +37,7 @@ namespace GIFDownloader.Handlers
         {
             var contentUrl = this.getOpenGraph();
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(contentUrl);
-            using Stream webStream = httpWebRequest.GetResponse().GetResponseStream();
-            webStream.CopyTo(stream);
+            using (Stream webStream = httpWebRequest.GetResponse().GetResponseStream()) webStream.CopyTo(stream);
         }
     }
 }

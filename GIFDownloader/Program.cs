@@ -24,8 +24,7 @@ namespace GIFDownloader
             if (url.Contains("//tenor.com/view/")) handler = new TenorHandler(url);
             if (url.Contains("//giphy.com/gifs/")) handler = new GiphyHandler(url);
             string filename = Tools.FindFilename(handler.GetFilename());
-            using FileStream fs = File.Create(filename);
-            handler.DownloadToStream(fs);
+            using (FileStream fs = File.Create(filename)) handler.DownloadToStream(fs);
             lock (lockObject) threadCount--;
             return Task.CompletedTask;
         }
