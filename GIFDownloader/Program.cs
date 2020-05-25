@@ -8,23 +8,24 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using GIFDownloader.Handlers;
+using GIFDownloader.Tools;
 
 namespace GIFDownloader
 {
     class Program
     {
-        private static object lockObject = new object();
-        private static int threadCount = 0;
+        private static readonly object lockObject = new object();
+        private static int threadCount;
 
-        static Task handleUrl(object u)
+        private static Task handleUrl(object u)
         {
             lock (lockObject) threadCount++;
             Handler handler = null;
             string url = (string)u;
             if (url.Contains("//tenor.com/view/")) handler = new TenorHandler(url);
             if (url.Contains("//giphy.com/gifs/")) handler = new GiphyHandler(url);
-            string filename = Tools.FindFilename(handler.GetFilename());
-            using (FileStream fs = File.Create(filename)) handler.DownloadToStream(fs);
+            Debug.Assert(handler != null, nameof(handler) + " != null");
+            handler.Download();
             lock (lockObject) threadCount--;
             return Task.CompletedTask;
         }
@@ -33,7 +34,8 @@ namespace GIFDownloader
         {
             Console.Title = "Gay ass GIF downloader";
             Console.WriteLine("§cReading url.txt!");
-            if (!File.Exists("url.txt")) { Console.WriteLine("§4url.txt does not exist! Exiting..."); return; }
+            if (!File.Exists("url.txt")) { Console.WriteLine("§4url.txt does not exist! §aCreating and exiting..."); File.WriteAllText("url.txt", ""); return; }
+            if (new FileInfo("url.txt").Length == 0) { Console.WriteLine("§4url.txt is empty! Exiting..."); return; }
             var URLs = File.ReadAllLines("url.txt").Distinct().ToArray();
             Console.WriteLine("§2url.txt read!");
             if (!Directory.Exists("GIFs"))

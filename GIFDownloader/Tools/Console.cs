@@ -11,26 +11,26 @@ namespace GIFDownloader
     {
         #region Wrapper
         public static string Title { get => retardConsole.Title; set => retardConsole.Title = value; }
-        public static bool IsInputRedirected { get => retardConsole.IsInputRedirected; }
+        public static bool IsInputRedirected => retardConsole.IsInputRedirected;
         public static int BufferHeight { get => retardConsole.BufferHeight; set => retardConsole.BufferHeight = value; }
         public static int BufferWidth { get => retardConsole.BufferWidth; set => retardConsole.BufferWidth = value; }
-        public static bool CapsLock { get => retardConsole.CapsLock; }
+        public static bool CapsLock => retardConsole.CapsLock;
         public static int CursorLeft { get => retardConsole.CursorLeft; set => retardConsole.CursorLeft = value; }
         public static int CursorSize { get => retardConsole.CursorSize; set => retardConsole.CursorSize = value; }
         public static int CursorTop { get => retardConsole.CursorTop; set => retardConsole.CursorTop = value; }
         public static bool CursorVisible { get => retardConsole.CursorVisible; set => retardConsole.CursorVisible = value; }
-        public static TextWriter Error { get => retardConsole.Error; }
+        public static TextWriter Error => retardConsole.Error;
         public static ConsoleColor ForegroundColor { get => retardConsole.ForegroundColor; set => retardConsole.ForegroundColor = value; }
-        public static TextReader In { get => retardConsole.In; }
+        public static TextReader In => retardConsole.In;
         public static Encoding InputEncoding { get => retardConsole.InputEncoding; set => retardConsole.InputEncoding = value; }
-        public static bool IsErrorRedirected { get => retardConsole.IsErrorRedirected; }
+        public static bool IsErrorRedirected => retardConsole.IsErrorRedirected;
         public static int WindowWidth { get => retardConsole.WindowWidth; set => retardConsole.WindowWidth = value; }
-        public static bool IsOutputRedirected { get => retardConsole.IsOutputRedirected; }
-        public static bool KeyAvailable { get => retardConsole.KeyAvailable; }
-        public static int LargestWindowHeight { get => retardConsole.LargestWindowHeight; }
-        public static int LargestWindowWidth { get => retardConsole.LargestWindowWidth; }
-        public static bool NumberLock { get => retardConsole.NumberLock; }
-        public static TextWriter Out { get => retardConsole.Out; }
+        public static bool IsOutputRedirected => retardConsole.IsOutputRedirected;
+        public static bool KeyAvailable => retardConsole.KeyAvailable;
+        public static int LargestWindowHeight => retardConsole.LargestWindowHeight;
+        public static int LargestWindowWidth => retardConsole.LargestWindowWidth;
+        public static bool NumberLock => retardConsole.NumberLock;
+        public static TextWriter Out => retardConsole.Out;
         public static Encoding OutputEncoding { get => retardConsole.OutputEncoding; set => retardConsole.OutputEncoding = value; }
         public static bool TreatControlCAsInput { get => retardConsole.TreatControlCAsInput; set => retardConsole.TreatControlCAsInput = value; }
         public static int WindowHeight { get => retardConsole.WindowHeight; set => retardConsole.WindowHeight = value; }
