@@ -1,0 +1,48 @@
+name: Continuous integration
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.100'
+    - name: Build with dotnet
+      run: |
+        dotnet restore 
+        dotnet msbuild GIFDownloader.sln /p:Configuration=Release "/p:Platform=Any CPU"
+        dotnet publish GIFDownloader.sln -c Release -o Builds/Windows_x64 -r win-x64 -p:PublishSingleFile=true
+        dotnet publish GIFDownloader.sln -c Release -o Builds/Windows_x86 -r win-x86 -p:PublishSingleFile=true
+        dotnet publish GIFDownloader.sln -c Release -o Builds/Windows_ARM -r win-arm -p:PublishSingleFile=true
+        dotnet publish GIFDownloader.sln -c Release -o Builds/Windows_ARM64 -r win-arm64 -p:PublishSingleFile=true
+    - name: Uploading Windows x64 build
+      uses: actions/upload-artifact@v1
+      with:
+        name: Windows x64
+        path: Builds/Windows_x64
+    - name: Uploading Windows x86 build
+      uses: actions/upload-artifact@v1
+      with:
+        name: Windows x86
+        path: Builds/Windows_x86
+    - name: Uploading Windows ARM build
+      uses: actions/upload-artifact@v1
+      with:
+        name: Windows ARM
+        path: Builds/Windows_ARM
+    - name: Uploading Windows ARM64 build
+      uses: actions/upload-artifact@v1
+      with:
+        name: Windows ARM64
+        path: Builds/Windows_ARM64
+    - name: Uploading compiled files
+      uses: actions/upload-artifact@v1
+      with:
+        name: Builds
+        path: Builds
